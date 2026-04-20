@@ -64,7 +64,7 @@ st.markdown("""
         border: 1px solid rgba(255,255,255,0.10);
         backdrop-filter: blur(10px);
         border-radius: 22px;
-        padding: 24px;
+        padding: 14px;
         box-shadow: 0 6px 25px rgba(0,0,0,0.18);
         margin-bottom: 20px;
     }
@@ -72,7 +72,7 @@ st.markdown("""
     .result-card {
         background: linear-gradient(135deg, #63c29a 0%, #42936d 100%);
         border-radius: 28px;
-        padding: 38px 24px;
+        padding: 14px 24px;
         text-align: center;
         box-shadow: 0 10px 30px rgba(0,0,0,0.22);
         border: 1px solid rgba(255,255,255,0.15);
@@ -81,10 +81,10 @@ st.markdown("""
     }
 
     .result-number {
-        font-size: 4.6rem;
-        font-weight: 900;
+        font-size: 12.6rem;
+        font-weight: 1400;
         margin: 0;
-        line-height: 1.1;
+        line-height: 3.1;
         color: white !important;
     }
 
@@ -326,8 +326,17 @@ if predict_button:
     prediction = model.predict(input_data)[0]
 
     st.markdown('<div class="result-card">', unsafe_allow_html=True)
-    st.markdown(f'<p class="result-number">{prediction:.2f} g/km</p>', unsafe_allow_html=True)
-    st.markdown('<p class="result-label">Emisiones estimadas de CO₂</p>', unsafe_allow_html=True)
+    st.markdown(
+    f"""
+    <div style="font-size:48px; font-weight:bold;">
+        {prediction:.2f} g/km
+    </div>
+    <div style="font-size:20px; opacity:0.8;">
+        Emisiones estimadas de CO₂
+    </div>
+    """,
+    unsafe_allow_html=True
+)
     st.markdown('</div>', unsafe_allow_html=True)
 
     m1, m2, m3 = st.columns(3)
